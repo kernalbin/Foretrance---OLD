@@ -158,11 +158,11 @@
     <object>objects\obj_enemy_notvisible</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_main_menu</room>
     <room>rooms\rm_house1_level1</room>
     <room>rooms\rm_outside</room>
     <room>rooms\rm_test</room>
     <room>rooms\rm_fight_zone</room>
+    <room>rooms\rm_main_menu</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

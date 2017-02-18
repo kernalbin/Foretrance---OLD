@@ -113,7 +113,7 @@ if (global.game_state == 'pause') {
         draw_sprite(object_get_sprite(item), 0, view_xview[0]+xstart+16, view_yview[0]+ystart+16);
     } else {
         
-        draw_sprite();
+        //draw_sprite();
     }
 }
 </string>
