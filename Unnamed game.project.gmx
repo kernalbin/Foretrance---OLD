@@ -77,7 +77,6 @@
       <sprite>sprites\spr_metal_bat</sprite>
       <sprite>sprites\spr_backpack</sprite>
     </sprites>
-    <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_minilizard</sprite>
   </sprites>
   <backgrounds name="background">
@@ -137,12 +136,12 @@
         </objects>
         <object>objects\obj_tree</object>
         <object>objects\obj_roof</object>
+        <object>objects\obj_wall_house_outside</object>
       </objects>
       <object>objects\obj_flower</object>
       <object>objects\obj_table</object>
       <object>objects\obj_door_outside</object>
       <object>objects\obj_door_inside</object>
-      <object>objects\obj_wall_house_outside</object>
       <object>objects\obj_wall_house_inside</object>
       <object>objects\obj_blankspace</object>
       <object>objects\obj_blankspace_top</object>
@@ -155,7 +154,10 @@
     <object>objects\obj_item_perent</object>
     <object>objects\obj_bat</object>
     <object>objects\obj_metal_bat</object>
-    <object>objects\obj_enemy_notvisible</object>
+    <objects name="Enemies">
+      <object>objects\obj_minilizard</object>
+      <object>objects\obj_grid</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_house1_level1</room>
