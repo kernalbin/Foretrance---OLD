@@ -36,6 +36,8 @@ down_key = keyboard_check(vk_down);
 
 imagespdhorz = .6;
 imagespdvert = .6;
+
+//this is a random message 
 </string>
           </argument>
         </arguments>
