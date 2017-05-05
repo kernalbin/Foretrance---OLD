@@ -28,11 +28,13 @@
             <string>/// Initialize variables and timers
 
 // Per enemy
-max_alert = 96;
-spd = 5;
+max_alert = 60;
+spd = 8;
 
 // Initialize path update alarm
 alarm[0] = room_speed div 4;
+
+alert = 0;
 </string>
           </argument>
         </arguments>
@@ -104,11 +106,19 @@ var px = (obj_player.x div 32)*32+16;
 var py = (obj_player.y div 32)*32+32;
 
 if (distance_to_object(obj_player) &lt; max_alert) {
+    alert = 1
+}
+
+if (alert == 1) {
     if (mp_grid_path(global.grid, path, x, y, px, py, 1)) {
         path_start(path, spd, path_action_stop, false);
     }
-} else {
-    path_end();
+    if (px &gt; x) {
+        image_xscale = -1;
+    }
+    if (px &lt; x) {
+        image_xscale = 1;
+    }
 }
 
 alarm[0] = room_speed div 4;
