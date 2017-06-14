@@ -36,8 +36,6 @@ down_key = keyboard_check(vk_down);
 
 imagespdhorz = .6;
 imagespdvert = .6;
-
-//this is a random message 
 </string>
           </argument>
         </arguments>
@@ -101,41 +99,46 @@ down_key = keyboard_check(ord('S'));
 sprint_key = keyboard_check(vk_shift);
 
 if (sprint_key) {
-    spd = 6;
-    imagespdhorz = 0.8
-    imagespdvert = 0.8
+    spd = 5;
+    imagespdhorz = 0.7
+    imagespdvert = 0.7
 } else {
     spd = 4;
     imagespdhorz = .6
     imagespdvert = .6
 }
 
-/// move right
-if (right_key) {
-    phy_position_x +=spd;
-    image_speed = imagespdhorz;
-    sprite_index = spr_player_right;
-}
-
-///move up
-if (up_key) {
-    phy_position_y -=spd;
-    sprite_index = spr_player_up;
-    image_speed = imagespdvert;
-}
-
-/// move left
-if (left_key) {
-    phy_position_x -=spd;
-    sprite_index = spr_player_left;
-    image_speed = imagespdhorz;
-}
-
-/// move down
-if (down_key) {
-    phy_position_y +=spd;
-    sprite_index = spr_player_down
-    image_speed = imagespdvert;
+if (!global.is_fight) {
+    image_alpha = 1;
+    /// move right
+    if (right_key) {
+        phy_position_x +=spd;
+        image_speed = imagespdhorz;
+        sprite_index = spr_player_right;
+    }
+    
+    ///move up
+    if (up_key) {
+        phy_position_y -=spd;
+        sprite_index = spr_player_up;
+        image_speed = imagespdvert;
+    }
+    
+    /// move left
+    if (left_key) {
+        phy_position_x -=spd;
+        sprite_index = spr_player_left;
+        image_speed = imagespdhorz;
+    }
+    
+    /// move down
+    if (down_key) {
+        phy_position_y +=spd;
+        sprite_index = spr_player_down
+        image_speed = imagespdvert;
+    }
+} else {
+    image_alpha = 0;
 }
 
 // Stop Animation
@@ -143,7 +146,6 @@ if (!up_key and !down_key and !right_key and !left_key) {
     image_speed = 0;
     image_index = 0;
 }
-
 </string>
           </argument>
         </arguments>
@@ -190,7 +192,9 @@ if (!up_key and !down_key and !right_key and !left_key) {
           <argument>
             <kind>1</kind>
             <string>// Draw the shadow
-draw_sprite(spr_player_shadow, image_index, x, y);
+if (!global.is_fight) {
+    draw_sprite(spr_player_shadow, image_index, x, y);
+}
 draw_self();
 </string>
           </argument>
