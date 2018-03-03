@@ -100,6 +100,7 @@
   <fonts name="fonts">
     <font>fonts\fnt_arial</font>
     <font>fonts\font1</font>
+    <font>fonts\boldfight</font>
   </fonts>
   <objects name="objects">
     <objects name="Map">

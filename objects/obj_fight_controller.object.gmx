@@ -27,7 +27,10 @@
             <kind>1</kind>
             <string>/// Initialize main variables
 global.is_fight = false;
-
+box1 = true;
+box2 = false;
+box3 = false;
+box4 = false;
 </string>
           </argument>
         </arguments>
@@ -52,8 +55,10 @@ global.is_fight = false;
             <kind>1</kind>
             <string>/// Draw fighting arena
 colour = c_black
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 if (global.is_fight) {
-    draw_set_alpha(.8);
+    draw_set_alpha(.9);
     draw_rectangle_colour(view_xview[0], view_yview[0], view_xview[0]+view_hport[0], view_yview[0]+view_wport[0], colour, colour, colour, colour, false);
     draw_set_alpha(1);
     draw_rectangle_colour(view_xview[0], view_yview[0]+120, view_xview[0]+view_hport[0], view_yview[0]+view_wport[0], colour, colour, colour, colour, false);
@@ -61,6 +66,51 @@ if (global.is_fight) {
     draw_roundrect_colour(view_xview[0]+89, view_yview[0]+134, view_xview[0]+149, view_yview[0]+164, c_white, c_white, true);
     draw_roundrect_colour(view_xview[0]+169, view_yview[0]+134, view_xview[0]+229, view_yview[0]+164, c_white, c_white, true);
     draw_roundrect_colour(view_xview[0]+249, view_yview[0]+134, view_xview[0]+309, view_yview[0]+164, c_white, c_white, true);
+    
+    if (box1) {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+39, view_yview[0]+150, "FIGHT");
+        draw_set_alpha(.2);
+        draw_roundrect_colour(view_xview[0]+10, view_yview[0]+135, view_xview[0]+68, view_yview[0]+163, c_white, c_white, false);
+    } else {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+39, view_yview[0]+150, "FIGHT");
+    }
+    if (box2) {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+119, view_yview[0]+150, "ITEMS");
+        draw_set_alpha(.2);
+        draw_roundrect_colour(view_xview[0]+90, view_yview[0]+135, view_xview[0]+148, view_yview[0]+163, c_white, c_white, false);
+    } else {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+119, view_yview[0]+150, "ITEMS");
+    }
+    if (box3) {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+200, view_yview[0]+150, "RUNES");
+        draw_set_alpha(.2);
+        draw_roundrect_colour(view_xview[0]+170, view_yview[0]+135, view_xview[0]+228, view_yview[0]+163, c_white, c_white, false);
+    } else {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+200, view_yview[0]+150, "RUNES");
+    }
+    if (box4) {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+280, view_yview[0]+150, "FLEE");
+        draw_set_alpha(.2);
+        draw_roundrect_colour(view_xview[0]+250, view_yview[0]+135, view_xview[0]+308, view_yview[0]+163, c_white, c_white, false);
+    } else {
+        draw_set_alpha(1);
+        draw_set_font(boldfight);
+        draw_text(view_xview[0]+280, view_yview[0]+150, "FLEE");
+    }
 }
 //15
 //31

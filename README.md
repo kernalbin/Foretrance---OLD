@@ -13,3 +13,5 @@ Were working on fighting machanics
 Redoning the main character
 Adding some cool art
 And starting the storyline.
+
+https://trello.com/b/IUt4CWlX/fortrance
