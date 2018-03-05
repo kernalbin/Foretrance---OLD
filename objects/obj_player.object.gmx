@@ -99,13 +99,13 @@ down_key = keyboard_check(ord('S'));
 sprint_key = keyboard_check(vk_shift);
 
 if (sprint_key) {
-    spd = 5;
-    imagespdhorz = 0.7
-    imagespdvert = 0.7
+    spd = 6;
+    imagespdhorz = 0.8
+    imagespdvert = 0.8
 } else {
-    spd = 4;
-    imagespdhorz = .6
-    imagespdvert = .6
+    spd = 5;
+    imagespdhorz = .7
+    imagespdvert = .7
 }
 
 if (!global.is_fight) {
@@ -120,7 +120,7 @@ if (!global.is_fight) {
     ///move up
     if (up_key) {
         phy_position_y -=spd;
-        sprite_index = spr_p_down;
+        sprite_index = spr_p_up;
         image_speed = imagespdvert;
     }
     

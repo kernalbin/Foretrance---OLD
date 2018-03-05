@@ -68,6 +68,7 @@
       <sprite>sprites\spr_p_rdiagonal</sprite>
       <sprite>sprites\spr_p_left</sprite>
       <sprite>sprites\spr_p_down</sprite>
+      <sprite>sprites\spr_p_up</sprite>
       <sprite>sprites\spr_p_shadow</sprite>
     </sprites>
   </sprites>

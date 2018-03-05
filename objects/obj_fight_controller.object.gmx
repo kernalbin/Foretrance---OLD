@@ -27,10 +27,74 @@
             <kind>1</kind>
             <string>/// Initialize main variables
 global.is_fight = false;
-box1 = true;
+box1 = false;
 box2 = false;
 box3 = false;
 box4 = false;
+boxs = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Move cursor
+
+if (global.is_fight) {
+    if (keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up)) {
+        if (boxs &gt; 1) {
+            boxs -= 1;
+        }
+    }
+    if (keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down)) {
+        if (boxs &lt; 4) {
+            boxs += 1;
+        }
+    }
+    
+    switch(boxs) {
+        case 1:
+            box1 = true;
+            box2 = false;
+            box3 = false;
+            box4 = false;
+            break;
+        case 2:
+            box1 = false;
+            box2 = true;
+            box3 = false;
+            box4 = false;
+            break;
+        case 3:
+            box1 = false;
+            box2 = false;
+            box3 = true;
+            box4 = false;
+            break;
+        case 4:
+            box1 = false;
+            box2 = false;
+            box3 = false;
+            box4 = true;
+            break;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -54,62 +118,66 @@ box4 = false;
           <argument>
             <kind>1</kind>
             <string>/// Draw fighting arena
-colour = c_black
+color_back = make_colour_rgb(25, 0, 20)
+color_bar = make_colour_rgb(12, 0, 15)
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 if (global.is_fight) {
-    draw_set_alpha(.9);
-    draw_rectangle_colour(view_xview[0], view_yview[0], view_xview[0]+view_hport[0], view_yview[0]+view_wport[0], colour, colour, colour, colour, false);
     draw_set_alpha(1);
-    draw_rectangle_colour(view_xview[0], view_yview[0]+120, view_xview[0]+view_hport[0], view_yview[0]+view_wport[0], colour, colour, colour, colour, false);
-    draw_roundrect_colour(view_xview[0]+9, view_yview[0]+134, view_xview[0]+69, view_yview[0]+164, c_white, c_white, true);
-    draw_roundrect_colour(view_xview[0]+89, view_yview[0]+134, view_xview[0]+149, view_yview[0]+164, c_white, c_white, true);
-    draw_roundrect_colour(view_xview[0]+169, view_yview[0]+134, view_xview[0]+229, view_yview[0]+164, c_white, c_white, true);
-    draw_roundrect_colour(view_xview[0]+249, view_yview[0]+134, view_xview[0]+309, view_yview[0]+164, c_white, c_white, true);
+    // Background
+    draw_rectangle_colour(view_xview[0], view_yview[0], view_xview[0]+640, view_yview[0]+360, color_back, color_back, color_back, color_back, false);
+    //Bars
+    draw_rectangle_colour(view_xview[0], view_yview[0], view_xview[0]+90, view_yview[0]+view_wport[0], color_bar, color_bar, color_bar, color_bar, false);
+    draw_rectangle_colour(view_xview[0]+550, view_yview[0], view_xview[0]+640, view_yview[0]+view_wport[0], color_bar, color_bar, color_bar, color_bar, false);
+    //Boxs
+    draw_roundrect_colour(view_xview[0]+15, view_yview[0]+45, view_xview[0]+75, view_yview[0]+75, c_white, c_white, true);
+    draw_roundrect_colour(view_xview[0]+15, view_yview[0]+120, view_xview[0]+75, view_yview[0]+150, c_white, c_white, true);
+    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+75, view_xview[0]+625, view_yview[0]+105, c_white, c_white, true);
+    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+150, view_xview[0]+625, view_yview[0]+180, c_white, c_white, true);
     
     if (box1) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+39, view_yview[0]+150, "FIGHT");
+        draw_text(view_xview[0]+45, view_yview[0]+61, "FIGHT");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+10, view_yview[0]+135, view_xview[0]+68, view_yview[0]+163, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+15, view_yview[0]+45, view_xview[0]+75, view_yview[0]+75, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+39, view_yview[0]+150, "FIGHT");
+        draw_text(view_xview[0]+45, view_yview[0]+61, "FIGHT");
     }
     if (box2) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+119, view_yview[0]+150, "ITEMS");
+        draw_text(view_xview[0]+45, view_yview[0]+136, "ITEMS");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+90, view_yview[0]+135, view_xview[0]+148, view_yview[0]+163, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+15, view_yview[0]+120, view_xview[0]+75, view_yview[0]+150, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+119, view_yview[0]+150, "ITEMS");
+        draw_text(view_xview[0]+45, view_yview[0]+136, "ITEMS");
     }
     if (box3) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+200, view_yview[0]+150, "RUNES");
+        draw_text(view_xview[0]+595, view_yview[0]+90, "RUNES");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+170, view_yview[0]+135, view_xview[0]+228, view_yview[0]+163, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+75, view_xview[0]+625, view_yview[0]+105, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+200, view_yview[0]+150, "RUNES");
+        draw_text(view_xview[0]+595, view_yview[0]+90, "RUNES");
     }
     if (box4) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+280, view_yview[0]+150, "FLEE");
+        draw_text(view_xview[0]+595, view_yview[0]+165, "FLEE");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+250, view_yview[0]+135, view_xview[0]+308, view_yview[0]+163, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+150, view_xview[0]+625, view_yview[0]+180, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+280, view_yview[0]+150, "FLEE");
+        draw_text(view_xview[0]+595, view_yview[0]+165, "FLEE");
     }
 }
 //15
