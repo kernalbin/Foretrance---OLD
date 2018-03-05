@@ -1,6 +1,10 @@
 # Fortrance
 ## A game about dreams.
 
+Designed and Developed by:
+Spencer Huntsman
+and
+Jacob McRynolds
 
 The wiki has controls in case you don't know them.
 
