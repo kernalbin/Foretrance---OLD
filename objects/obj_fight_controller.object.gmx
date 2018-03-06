@@ -27,11 +27,10 @@
             <kind>1</kind>
             <string>/// Initialize main variables
 global.is_fight = false;
-box1 = false;
+box1 = true;
 box2 = false;
 box3 = false;
 box4 = false;
-boxs = 1;
 </string>
           </argument>
         </arguments>
@@ -56,44 +55,61 @@ boxs = 1;
             <kind>1</kind>
             <string>/// Move cursor
 
+var up = keyboard_check_pressed(ord('W'));
+var down = keyboard_check_pressed(ord('S'));
+var left = keyboard_check_pressed(ord('A'));
+var right = keyboard_check_pressed(ord('D'));
+
 if (global.is_fight) {
-    if (keyboard_check_pressed(ord('W')) || keyboard_check_pressed(vk_up)) {
-        if (boxs &gt; 1) {
-            boxs -= 1;
-        }
+    if (up &amp;&amp; box2) {
+        box1 = true;
+        box2 = false;
+        box3 = false;
+        box4 = false;
     }
-    if (keyboard_check_pressed(ord('S')) || keyboard_check_pressed(vk_down)) {
-        if (boxs &lt; 4) {
-            boxs += 1;
-        }
+    if (up &amp;&amp; box4) {
+        box1 = false;
+        box2 = false;
+        box3 = true;
+        box4 = false;
+    }
+    if (down &amp;&amp; box1) {
+        box1 = false;
+        box2 = true;
+        box3 = false;
+        box4 = false;
+    }
+    if (down &amp;&amp; box3) {
+        box1 = false;
+        box2 = false;
+        box3 = false;
+        box4 = true;
+    }
+    if (right &amp;&amp; box1) {
+        box1 = false;
+        box2 = false;
+        box3 = true;
+        box4 = false;
+    }
+    if (right &amp;&amp; box2) {
+        box1 = false;
+        box2 = false;
+        box3 = false;
+        box4 = true;
+    }
+    if (left &amp;&amp; box3) {
+        box1 = true;
+        box2 = false;
+        box3 = false;
+        box4 = false;
+    }
+    if (left &amp;&amp; box4) {
+        box1 = false;
+        box2 = true;
+        box3 = false;
+        box4 = false;
     }
     
-    switch(boxs) {
-        case 1:
-            box1 = true;
-            box2 = false;
-            box3 = false;
-            box4 = false;
-            break;
-        case 2:
-            box1 = false;
-            box2 = true;
-            box3 = false;
-            box4 = false;
-            break;
-        case 3:
-            box1 = false;
-            box2 = false;
-            box3 = true;
-            box4 = false;
-            break;
-        case 4:
-            box1 = false;
-            box2 = false;
-            box3 = false;
-            box4 = true;
-            break;
-    }
 }
 </string>
           </argument>
@@ -118,8 +134,8 @@ if (global.is_fight) {
           <argument>
             <kind>1</kind>
             <string>/// Draw fighting arena
-color_back = make_colour_rgb(25, 0, 20)
-color_bar = make_colour_rgb(12, 0, 15)
+color_back = make_colour_rgb(25, 0, 20);
+color_bar = make_colour_rgb(12, 0, 15);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 if (global.is_fight) {
@@ -132,8 +148,8 @@ if (global.is_fight) {
     //Boxs
     draw_roundrect_colour(view_xview[0]+15, view_yview[0]+45, view_xview[0]+75, view_yview[0]+75, c_white, c_white, true);
     draw_roundrect_colour(view_xview[0]+15, view_yview[0]+120, view_xview[0]+75, view_yview[0]+150, c_white, c_white, true);
-    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+75, view_xview[0]+625, view_yview[0]+105, c_white, c_white, true);
-    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+150, view_xview[0]+625, view_yview[0]+180, c_white, c_white, true);
+    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+45, view_xview[0]+625, view_yview[0]+75, c_white, c_white, true);
+    draw_roundrect_colour(view_xview[0]+565, view_yview[0]+120, view_xview[0]+625, view_yview[0]+150, c_white, c_white, true);
     
     if (box1) {
         draw_set_alpha(1);
@@ -160,31 +176,26 @@ if (global.is_fight) {
     if (box3) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+595, view_yview[0]+90, "RUNES");
+        draw_text(view_xview[0]+595, view_yview[0]+61, "RUNES");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+75, view_xview[0]+625, view_yview[0]+105, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+45, view_xview[0]+625, view_yview[0]+75, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+595, view_yview[0]+90, "RUNES");
+        draw_text(view_xview[0]+595, view_yview[0]+61, "RUNES");
     }
     if (box4) {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+595, view_yview[0]+165, "FLEE");
+        draw_text(view_xview[0]+595, view_yview[0]+136, "FLEE");
         draw_set_alpha(.2);
-        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+150, view_xview[0]+625, view_yview[0]+180, c_white, c_white, false);
+        draw_roundrect_colour(view_xview[0]+565, view_yview[0]+120, view_xview[0]+625, view_yview[0]+150, c_white, c_white, false);
     } else {
         draw_set_alpha(1);
         draw_set_font(boldfight);
-        draw_text(view_xview[0]+595, view_yview[0]+165, "FLEE");
+        draw_text(view_xview[0]+595, view_yview[0]+136, "FLEE");
     }
 }
-//15
-//31
-//16
-
-//60
 </string>
           </argument>
         </arguments>
